@@ -6,11 +6,10 @@ class Solution {
         }
 
         int op = 0;
-        while( pq.size()> 1 ) {
+        while( pq.peek() < k ) {
             long a = pq.poll();
             long b = pq.poll();
-            if( a >= k ) break;
-            pq.add((long)(a*2+b));
+            pq.add((long)((a<<1)+b));
             op++;
         }
 
