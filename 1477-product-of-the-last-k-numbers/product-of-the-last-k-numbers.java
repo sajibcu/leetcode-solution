@@ -3,21 +3,32 @@ class ProductOfNumbers {
 
     public ProductOfNumbers() {
         products = new ArrayList<>();
+        products.add(1);
     }
     
     public void add(int num) {
-        products.add(num);
+        if( num == 0) {
+            products.clear();
+            products.add(1);
+            return;
+        }
+
+        int l = products.size();
+        products.add(num * products.get(l - 1 ));
+       
     }
     
     public int getProduct(int k) {
-        int p = 1;
-        int i = products.size() - 1;
-        while( k-- > 0 ) {
-            p *=products.get(i--);
-            if( p == 0 ) return p;
-        }
 
-        return p;
+        
+        
+        int l = products.size();
+        // for(int i = 0; i< l; i++ ){
+        //     System.out.print(products.get(i)+"##");
+        // }
+        // System.out.println("------------------");
+        if( k >=l ) return 0;
+        return products.get(l-1) / products.get(l-k-1);
     }
 }
 
