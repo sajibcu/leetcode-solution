@@ -1,18 +1,23 @@
 class Solution {
+    private String ans = "";
+    private int count = 0;
     public String getHappyString(int n, int k) {
         List<String> allString = new ArrayList<>();
-        bracktrack(allString, new StringBuilder(),n, k);
-        String ans = "";
+        ans = "";
+        count = 0;
+        bracktrack(new StringBuilder(),n, k);
         
-        return k > allString.size() ? "" : allString.get(k-1);
+        return ans;
         
     }
 
-    public void bracktrack(List<String> s, StringBuilder path,int n, int k){
-        if(s.size() >= k ) return;
+    public void bracktrack( StringBuilder path,int n, int k){
+        if(count >= k ) return;
         if( path.length() == n ) {
-           // if("")
-            s.add(path.toString());
+            count++;
+            if(count == k ){
+                ans = path.toString();
+            }
             return;
         }else if(path.length() > n) {
             return;
@@ -24,7 +29,7 @@ class Solution {
                 c != path.charAt(path.length()-1)
             ) {
                 path.append(c);
-                bracktrack(s,path,n,k);
+                bracktrack(path,n,k);
                 path.deleteCharAt(path.length() - 1);
             }
         }
