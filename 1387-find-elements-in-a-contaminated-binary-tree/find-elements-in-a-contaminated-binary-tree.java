@@ -14,33 +14,31 @@
  * }
  */
 class FindElements {
-    
-    Map<Integer,Boolean> map;
 
-    public void dfs(TreeNode root) {
-        if( root.left != null) {
-            root.left.val = (root.val << 1) + 1;
-            map.put(root.left.val,true);
-            dfs(root.left);
-        }
-
-        if( root.right != null) {
-            root.right.val = (root.val << 1) + 2;
-            map.put(root.right.val,true);
-            dfs(root.right);
-        }
-
-    }
+    private Set<Integer> values;
 
     public FindElements(TreeNode root) {
+        values = new HashSet<>();
         root.val = 0;
-        map = new HashMap<>();
-        map.put(0,true);
-        dfs(root);
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+
+        while( !st.isEmpty() ) {
+            TreeNode node = st.pop();
+            values.add(node.val);
+            if (node.right != null) {
+                node.right.val = (node.val << 1) + 2;
+                st.push(node.right);
+            }
+            if (node.left != null) {
+                node.left.val = (node.val << 1) + 1;
+                st.push(node.left);
+            }
+        }
     }
     
     public boolean find(int target) {
-        return map.containsKey(target);
+        return values.contains(target);
         
     }
 }
