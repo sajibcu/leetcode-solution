@@ -14,7 +14,7 @@
  * }
  */
 class FindElements {
-    TreeNode root;
+    
     Map<Integer,Boolean> map;
 
     public void dfs(TreeNode root) {
@@ -37,19 +37,11 @@ class FindElements {
         map = new HashMap<>();
         map.put(0,true);
         dfs(root);
-        this.root = root;
     }
     
     public boolean find(int target) {
         return map.containsKey(target);
-        //return findDFS(root, target);
         
-    }
-
-    public boolean findDFS(TreeNode root,int t) {
-        if(root == null  ) return false;
-        if( root.val==t ) return true;
-        return findDFS(root.left,t) || findDFS(root.right,t);
     }
 }
 
