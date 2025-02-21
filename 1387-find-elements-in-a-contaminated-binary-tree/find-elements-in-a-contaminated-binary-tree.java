@@ -15,17 +15,17 @@
  */
 class FindElements {
 
-    Map<Integer,Boolean> values;
+    private HashSet<Integer> values;
 
     public FindElements(TreeNode root) {
-        values = new HashMap<>();
+        values = new HashSet<>();
         root.val = 0;
         Stack<TreeNode> st = new Stack<>();
         st.push(root);
 
         while( !st.isEmpty() ) {
             TreeNode node = st.pop();
-            values.put(node.val,true);
+            values.add(node.val);
             if (node.right != null) {
                 node.right.val = (node.val << 1) + 2;
                 st.push(node.right);
@@ -38,7 +38,8 @@ class FindElements {
     }
     
     public boolean find(int target) {
-        return values.containsKey(target);        
+        return values.contains(target);
+        
     }
 }
 
