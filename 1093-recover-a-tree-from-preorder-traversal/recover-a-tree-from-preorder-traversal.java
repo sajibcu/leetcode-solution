@@ -15,13 +15,15 @@
  */
 class Solution {
     public TreeNode recoverFromPreorder(String traversal) {
-        Map<Integer,List<TreeNode>> mp = new HashMap<>();
-        int i = 0;
+        Map<Integer,Stack<TreeNode>> mp = new HashMap<>();
         int l = traversal.length();
         int d = 0;
+
         TreeNode root = new TreeNode();
-        mp.put(0, List.of(root) );
-        int val = 0;
+        mp.put(0, new Stack<>());
+        mp.get(0).push(root);
+
+        int val = 0,i=0;
         while( i < l) {
             val = 0;
 
@@ -34,10 +36,8 @@ class Solution {
             if(d == 0){
                 root.val = val;
             }else {
-                //System.out.println(d+"##"+val);
                 TreeNode node = new TreeNode(val);
-                List<TreeNode> tempNodes = mp.get(d-1);
-                TreeNode lastNode = tempNodes.get(tempNodes.size() - 1);
+                TreeNode lastNode = mp.get(d-1).peek();
                 if(lastNode.left == null){
                     lastNode.left = node;
                 }else{
@@ -45,8 +45,8 @@ class Solution {
                 }
                 
 
-               mp.putIfAbsent(d, new ArrayList<>());
-                mp.get(d).add(node);
+               mp.putIfAbsent(d, new Stack<>());
+                mp.get(d).push(node);
             }
 
             // depth
