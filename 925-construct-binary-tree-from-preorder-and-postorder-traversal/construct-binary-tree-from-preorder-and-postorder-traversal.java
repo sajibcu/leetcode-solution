@@ -14,10 +14,9 @@
  * }
  */
 class Solution {
-    HashMap<Integer,Integer> preeMp;
-    HashMap<Integer,Integer> postMp;
-    int[] preorder;
-    int[] postorder;
+    int[] preorder,postorder;
+    int[] preeMp,postMp;
+    
     public TreeNode constract(int l,int r) {
         if (l > r) return null;
         int val = preorder[l];
@@ -27,10 +26,10 @@ class Solution {
             return root;
         }
         
-        int postIndex = postMp.get(val) -1 ;
+        int postIndex = postMp[val] -1 ;
         if (postIndex < 0 ) return root;
        
-        int preIndex = preeMp.get(postorder[postIndex]);
+        int preIndex = preeMp[postorder[postIndex]];
         root.left = constract(l+1, preIndex-1);
         root.right = constract(preIndex, r);
         return root;
@@ -39,11 +38,11 @@ class Solution {
     public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
         this.preorder = preorder;
         this.postorder = postorder;
-        preeMp = new HashMap<>();
-        postMp = new HashMap<>();
+        preeMp = new int[31];
+        postMp = new int[31];
         for(int i =0;i<postorder.length; i++){
-            preeMp.put(preorder[i],i);
-            postMp.put(postorder[i],i);
+            preeMp[preorder[i]] = i;
+            postMp[ postorder[i] ] = i;;
         }
        return constract(0,preorder.length-1);
         
