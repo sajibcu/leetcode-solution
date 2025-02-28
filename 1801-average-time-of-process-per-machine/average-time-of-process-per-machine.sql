@@ -1,12 +1,10 @@
-# Write your MySQL query statement below
-
-select a.machine_id,
- round (
-( SUM(CASE when a.activity_type = 'end' then a.timestamp else 0.0 end) -
-    SUM(CASE when a.activity_type = 'start' then a.timestamp else 0.0 end)
- ) / 
-SUM(CASE when a.activity_type = 'end' then 1 else 0 end)
- , 3)
-as processing_time
-from Activity a
-group by a.machine_id
+SELECT 
+    a.machine_id,
+    ROUND( 
+            (
+                SUM(CASE WHEN a.activity_type = 'end' THEN a.timestamp ELSE 0 END) - 
+                SUM(CASE WHEN a.activity_type = 'start' THEN a.timestamp ELSE 0 END)
+            ) / COUNT(CASE WHEN a.activity_type = 'end' THEN 1 ELSE NULL END), 3
+    ) AS processing_time
+FROM Activity a
+GROUP BY a.machine_id;
