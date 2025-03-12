@@ -12,7 +12,6 @@ class Solution {
                 r = mid;
             }
         }
-        System.out.println(l);
         
         r = l;
         while( r < nums.length && nums[r] == 0 ){
