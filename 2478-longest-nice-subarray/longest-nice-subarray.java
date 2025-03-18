@@ -7,13 +7,11 @@ class Solution {
         for( int i =0; i< nums.length; i++ ) {
 
             int j = i;
-            int temp = 0;
             clearBit(bit);
             while( j< nums.length && setBit(bit, nums[j]) == 0 ) {
                 j++;
-                temp++;
             }
-            ans = Math.max(ans, temp);
+            ans = Math.max(ans, j-i);
 
             // for(int a: bit) System.out.print(a+",");
             // System.out.println();
