@@ -1,20 +1,16 @@
 # Write your MySQL query statement below
 select
 s.id,
-sum(s.cnt) as num 
+count(1) as num 
 from
 (
-    select requester_id as id,
-    count(1) cnt
+    select requester_id as id
     from RequestAccepted
-    group by requester_id
 
     union all
 
-    select accepter_id as id,
-    count(1) cnt
-    from RequestAccepted
-    group by accepter_id
+    select accepter_id as id
+    from RequestAccepted 
 ) s
 group by s.id
 order by 2 desc
