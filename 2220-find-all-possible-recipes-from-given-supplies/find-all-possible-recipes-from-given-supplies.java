@@ -12,7 +12,8 @@ class Solution {
         }
         
         // Iterate up to 100 times to ensure all possible recipes are checked
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < recipes.length; i++) {
+            Boolean isAvailabeForMade = false;
             for (int j = 0; j < recipes.length; j++) {
                 String r = recipes[j];
                 
@@ -30,11 +31,14 @@ class Solution {
                     
                     // If all ingredients are available, add the recipe to the output set
                     if (isMake) {
+                        isAvailabeForMade = true;
                         spMap.put(r, true);
                         output.add(r);
                     }
                 }
             }
+
+            if( !isAvailabeForMade ) break;
         }
         
         // Convert the output set to a list and return it
