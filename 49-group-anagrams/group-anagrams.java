@@ -3,20 +3,17 @@ class Solution {
         Map<String,List<String>> mp = new HashMap<>();
 
         for( String s: strs ) {
-            String sortedString = s.chars()
-                .sorted()
-                .mapToObj(c -> String.valueOf((char) c))
-                .collect(Collectors.joining());
-            mp.computeIfAbsent(sortedString, k -> new ArrayList<>()).add(s);
+           int[] count = new int[26];  // Frequency array for characters 'a' to 'z'
+            for (char c : s.toCharArray()) {
+                count[c - 'a']++;
+            }
+            // Convert frequency array to a string key
+            String key = Arrays.toString(count);
+
+            mp.computeIfAbsent(key, k -> new ArrayList<>()).add(s);
         }
 
-        List<List<String>> ans = new ArrayList<>();
-
-        for( String key : mp.keySet()) {
-            ans.add( mp.get(key) );
-        }
-
-        return ans;
+        return new ArrayList<>(mp.values());
         
     }
 }
