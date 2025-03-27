@@ -13,14 +13,15 @@ class Solution {
             }
         }
 
-        int left = 0,right = max;
+        int left = 0,right = max, len = nums.size();
 
-        for( int i=0; i< nums.size(); i++) {
+        for( int i=0; i< len; i++) {
             int n = nums.get(i);
             if( n == dominant ){
                 left++;
                 right--;
-                if( left > (i+1)/2 && right > (nums.size()-i-1)/2 ) return i;
+                if( (left<<1) > i+1 && (right<<1) > len-i-1 ) return i;
+                //if( left > (i+1)/2 && right > (nums.size()-i-1)/2 ) return i;
             } 
             
         }
