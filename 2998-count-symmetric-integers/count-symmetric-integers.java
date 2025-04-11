@@ -1,13 +1,16 @@
 class Solution {
+    private int ar[] = new int[10001];
+
+    Solution() {
+        ar[0] = 0;
+        for(int i =1; i<=10000 ; i++) {
+            ar[i] = ar[i-1] + symmetric(i);
+        }
+    }
+
     public int countSymmetricIntegers(int low, int high) {
 
-        int ans = 0;
-        while( low <=high) {
-            ans +=symmetric(low);
-            low++;
-        }
-
-        return ans;
+        return ar[high] - ar[low-1];
         
     }
 
