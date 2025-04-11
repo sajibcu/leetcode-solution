@@ -12,19 +12,24 @@ class Solution {
     }
 
     public int symmetric(int n) {
-        String s = String. valueOf(n);
-        int l = s.length(); 
-        if( (l&1) !=0) return 0;
-        int digitSum = 0;
-        for( int i = 0; i< l/2; i++) {
-            digitSum +=s.charAt(i);
+        int left = 0, right =0;
+
+        if( n >=10 && n<=99 ) {
+            return n%10 == n/10 ? 1 : 0;
         }
 
-        for( int i = l/2; i< l; i++) {
-            digitSum -=s.charAt(i);
+        if( n >=1000 && n<=9999) {
+            right += n%10;
+            n/=10;
+            right += n%10;
+            n/=10;
+
+            left = n%10 + n/10;
+            return left == right ? 1 : 0;
+
         }
 
-        return digitSum == 0 ? 1 : 0;
 
+        return 0;
     }
 }
