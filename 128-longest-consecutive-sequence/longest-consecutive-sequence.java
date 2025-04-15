@@ -1,6 +1,7 @@
 class Solution {
     public int longestConsecutive(int[] nums) {
         HashMap<Integer, Integer> mp = new HashMap<>();
+        HashSet<Integer> isVisited = new HashSet<>();
 
         for (int n : nums) {
             mp.put(n, 1);
@@ -9,7 +10,7 @@ class Solution {
         int ans = 0;
 
         for (int n : nums) {
-            if (!mp.containsKey(n)) continue;
+            if (isVisited.contains(n)) continue;
 
             int temp = 0;
 
@@ -17,7 +18,7 @@ class Solution {
             for (int i = n; ; i++) {
                 if (mp.containsKey(i)) {
                     temp++;
-                    mp.remove(i);
+                    isVisited.add(i);
                 } else {
                     break;
                 }
@@ -27,7 +28,7 @@ class Solution {
             for (int i = n - 1; ; i--) {
                 if (mp.containsKey(i)) {
                     temp++;
-                    mp.remove(i);
+                   isVisited.add(i);
                 } else {
                     break;
                 }
