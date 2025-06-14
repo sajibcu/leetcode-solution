@@ -10,10 +10,10 @@ class Solution {
             mp.put(nums[i],i);
         }
 
-        for(int i = 0; i < len; i++){
+        for(int i = 0; i < len - 3; i++){
             int a = nums[i];
 
-            for(int j=i+1;j<len;j++) {
+            for(int j=i+1;j<len - 2;j++) {
                 int b = nums[j]; 
 
                 for(int k = j+1; k< len ; k++ ) {
