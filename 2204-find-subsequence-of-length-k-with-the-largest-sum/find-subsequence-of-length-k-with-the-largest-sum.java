@@ -7,18 +7,15 @@ class Solution {
             nodes.add(n);
             if(nodes.size() > k ) nodes.poll();
         }
-        while(!nodes.isEmpty() ) {
-            Node n = nodes.poll();
-            isTake[n.index] = true;
-        }
-        int[] ans = new int[k];
-        int l =0;
 
-        for(int i=0;i<nums.length; i++) {
-            if( isTake[i] == true ) {
-                ans[l++] = nums[i];
-            }
+        List<Node> topK = new ArrayList<>(nodes);
+        topK.sort(Comparator.comparingInt(n -> n.index));
+
+        int[] ans = new int[k];
+        for (int i = 0; i < k; i++) {
+            ans[i] = topK.get(i).val;
         }
+
         return ans;
         
     }
