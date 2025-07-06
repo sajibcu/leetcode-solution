@@ -27,9 +27,7 @@ class FindSumPairs {
         int cnt = 0;
         for(int n: nums1) {
             int remaining = tot - n;
-            if(mp.containsKey(remaining)  ) {
-                cnt +=mp.get(remaining);
-            }
+            cnt +=mp.getOrDefault(remaining,0);
         }
 
         return cnt;
