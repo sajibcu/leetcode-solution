@@ -3,19 +3,13 @@ class FindSumPairs {
     int[] nums2;
 
     Map<Integer,Integer> mp;
-    Map<Integer,Integer> freq1;
 
     public FindSumPairs(int[] nums1, int[] nums2) {
         this.nums1 = nums1;
         this.nums2 = nums2;
         mp = new HashMap<>();
-        freq1 = new HashMap<>();
         for( int n : nums2) {
             mp.put(n, mp.getOrDefault(n,0)+1);
-        }
-
-        for( int n : nums1) {
-            freq1.put(n, freq1.getOrDefault(n,0)+1);
         }
     }
     
@@ -31,10 +25,10 @@ class FindSumPairs {
     
     public int count(int tot) {
         int cnt = 0;
-        for(int n: freq1.keySet()) {
+        for(int n: nums1) {
             int remaining = tot - n;
             if(mp.containsKey(remaining)  ) {
-                cnt +=freq1.get(n)*mp.get(remaining);
+                cnt +=mp.get(remaining);
             }
         }
 
