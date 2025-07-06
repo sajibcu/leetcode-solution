@@ -1,7 +1,6 @@
 class FindSumPairs {
     int[] nums1;
     int[] nums2;
-
     Map<Integer,Integer> mp;
 
     public FindSumPairs(int[] nums1, int[] nums2) {
@@ -16,7 +15,7 @@ class FindSumPairs {
     public void add(int index, int val) {
         int key = nums2[index];
         mp.put(key, mp.getOrDefault(key,0)-1);
-        if (mp.get(key) == 0) mp.remove(key);
+        // if (mp.get(key) == 0) mp.remove(key);
 
         mp.put(key+val, mp.getOrDefault(key+val,0)+1);
         nums2[index] +=val;
