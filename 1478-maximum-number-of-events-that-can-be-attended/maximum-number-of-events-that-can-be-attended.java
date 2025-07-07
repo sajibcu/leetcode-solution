@@ -3,8 +3,10 @@ class Solution {
     public int maxEvents(int[][] events) {
 
         Arrays.sort(events, (a,b) -> a[1] - b[1]);
-        parent = new int[100002];
-        for(int i=0;i<100002; i++) parent[i] = i;
+        int max = 0;
+        for(int[] e: events) max =Math.max(e[1],max);
+        parent = new int[max+2];
+        for(int i=0;i<max+2; i++) parent[i] = i;
         int ans = 0;
 
         for(int[] e : events) {
