@@ -11,20 +11,11 @@
 class Solution {
     public int getDecimalValue(ListNode head) {
         int num = 0;
-        int i=0;
-        int l = getLen(head);
         while(head != null) {
-            if( head.val == 1)
-            num += 1<<(l-i-1);
-            i++;
+            num = (num <<1) | head.val;
             head = head.next;
         }
         return num;
         
-    }
-    public int getLen(ListNode head) {
-        if( head.next == null) return 1;
-        return 1 + getLen(head.next);
-
     }
 }
