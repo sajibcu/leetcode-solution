@@ -1,22 +1,14 @@
 class Solution {
     public boolean isValid(String word) {
-        if( word.length() < 3) return false;
-        String regex = "^[0-9A-Za-z]+$";
-        if( !word.matches(regex) ) return false;
-        boolean hasVowel = false,hasConsonant=false;
+        if (word.length() < 3) return false;
 
-        for(int i = 0; i< word.length(); i++) {
-            char c = word.charAt(i);
-            if( c >='0' && c<='9' ) {
-                // nothing
-                continue;
-            }
-            else if( isVowel(c) ) hasVowel = true;
-            else hasConsonant = true;
-            
-            if(hasVowel && hasConsonant) return true;
-        }
-        return false;
+        String regexAlphanumeric = "^[A-Za-z0-9]+$";
+        String regexHasVowel = ".*[aeiouAEIOU].*";
+        String regexHasConsonant = ".*[b-df-hj-np-tv-zB-DF-HJ-NP-TV-Z].*";
+
+        return word.matches(regexAlphanumeric)
+            && word.matches(regexHasVowel)
+            && word.matches(regexHasConsonant);
     }
 
     public boolean isVowel(char c) {
@@ -27,9 +19,5 @@ class Solution {
             default:
                 return false;
         }
-    }
-
-    public boolean isConsonant(char c) {
-        return Character.isLetter(c) && !isVowel(c);
     }
 }
