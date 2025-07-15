@@ -11,13 +11,12 @@ class Solution {
                 // nothing
                 continue;
             }
-            else if( isVowel(c) ) {
-                hasVowel = true;
-            }else {
-                hasConsonant = true;
-            }
+            else if( isVowel(c) ) hasVowel = true;
+            else hasConsonant = true;
+            
+            if(hasVowel && hasConsonant) return true;
         }
-        return hasVowel && hasConsonant;
+        return false;
     }
 
     public boolean isVowel(char c) {
