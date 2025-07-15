@@ -17,7 +17,6 @@ class Solution {
                 hasConsonant = true;
             }
         }
-        System.out.println(hasVowel + "&&" + hasConsonant);
         return hasVowel && hasConsonant;
     }
 
