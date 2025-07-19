@@ -1,5 +1,6 @@
 class Solution {
     public List<String> removeSubfolders(String[] folder) {
+        Arrays.sort(folder);
 
         Trie trie = new Trie();
         for( String s: folder) {
@@ -54,7 +55,7 @@ class Trie {
             int len = path.length();
             path.append("/").append(k);
             dfs(child,path,ans);
-            path.setLength(len);
+            path.setLength(len); //backtrack
            
         }
     }
