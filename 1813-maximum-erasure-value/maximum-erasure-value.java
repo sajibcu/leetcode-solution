@@ -5,19 +5,14 @@ class Solution {
         int max = 0;
         int temp = 0;
         for(int i=0;i<nums.length;i++) {
-            if( freq[nums[i]] == 1 ) {
-                while(start < i && nums[start] != nums[i]) {
-                    temp -=nums[start];
-                    freq[nums[start]]--;
-                    start++;
-                    
-                }
+            while(freq[nums[i]] == 1) {
                 temp -=nums[start];
                 freq[nums[start]]--;
                 start++;
+                
             }
             freq[nums[i]]++;
-            temp +=nums[i];
+            temp += nums[i];
             max = Math.max(temp,max);
         }
 
