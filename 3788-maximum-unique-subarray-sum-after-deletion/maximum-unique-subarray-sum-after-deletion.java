@@ -9,10 +9,11 @@ class Solution {
             }
             max = Math.max(max,num);
         }
+        if( max < 0) return max;
         int sum = 0;
         for(int i =0; i< 101;i++) {
             if( positive[i] ) sum+=i;
         }
-        return sum > 0 ? sum : max;
+        return sum;
     }
 }
