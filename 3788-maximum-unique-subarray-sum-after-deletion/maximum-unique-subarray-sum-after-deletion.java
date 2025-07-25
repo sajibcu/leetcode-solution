@@ -1,15 +1,18 @@
 class Solution {
 
     public int maxSum(int[] nums) {
-        Set<Integer> positiveNumsSet = new HashSet<>();
+        boolean[] positive = new boolean[101];
+        int max = -100;
         for (int num : nums) {
             if (num > 0) {
-                positiveNumsSet.add(num);
+                positive[num] = true;
             }
+            max = Math.max(max,num);
         }
-        if (positiveNumsSet.isEmpty()) {
-            return Arrays.stream(nums).max().getAsInt();
+        int sum = 0;
+        for(int i =0; i< 101;i++) {
+            if( positive[i] ) sum+=i;
         }
-        return positiveNumsSet.stream().mapToInt(Integer::intValue).sum();
+        return sum > 0 ? sum : max;
     }
 }
