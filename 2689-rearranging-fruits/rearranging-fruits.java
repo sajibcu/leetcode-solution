@@ -1,7 +1,7 @@
 class Solution {
     public long minCost(int[] basket1, int[] basket2) {
 
-        // \U0001f534 Check if making baskets equal is even possible
+        // Check if making baskets equal is even possible
         Map<Integer, Integer> freq = new HashMap<>();
         for (int n : basket1) freq.put(n, freq.getOrDefault(n, 0) + 1);
         for (int n : basket2) freq.put(n, freq.getOrDefault(n, 0) + 1);
@@ -9,21 +9,18 @@ class Solution {
             if (count % 2 != 0) return -1;
         }
 
-        Thread t1 = new Thread( ()->{
-            Arrays.sort(basket1);
-        } );
-        Thread t2 = new Thread(() -> {
-            Arrays.sort(basket2);
-        });
-        t1.start();
-        t2.start();
+        // Parallel sort
+        Thread t1 = new Thread(()-> Arrays.sort(basket1));
+        Thread t2 = new Thread(() -> Arrays.sort(basket2));
+        t1.start();t2.start();
+
         try {
-            t1.join();
-            t2.join();
+            t1.join();t2.join();
         }catch (Exception e){
-            System.out.println("error");
+            System.out.println("error in sorting");
         }
 
+        // Build remaining elements that differ
         List<Integer> remaing1 = new ArrayList<>();
         List<Integer> remaing2 = new ArrayList<>();
 
