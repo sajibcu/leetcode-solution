@@ -1,10 +1,11 @@
 class Solution {
     public int maxTotalFruits(int[][] fruits, int startPos, int k) {
 
-        int[] preSum = new int[400001];
+        int totalSize = startPos+k+1;
+        int[] preSum = new int[totalSize];
         int j=0,i=0;
 
-        for( i = 0;i<400001;i++) {
+        for( i = 0;i<totalSize;i++) {
             if( i > 0) preSum[i] +=preSum[i-1];
             if( j< fruits.length && i >= fruits[j][0]) {
                 preSum[i] +=fruits[j][1];
@@ -23,7 +24,7 @@ class Solution {
             int stepsLeft = startPos - i;
             if( stepsLeft > k ) break;
 
-            int remaining = k - 2* stepsLeft;
+            int remaining = k - (stepsLeft<<1);
             int right = startPos + remaining;
 
             ans = Math.max(ans,preSum[right] - (i==0 ? 0 : preSum[i-1]));
@@ -34,7 +35,7 @@ class Solution {
         i = startPos;
         while( i <= startPos+k) {
 
-            int remaining = k - 2*(i- startPos);
+            int remaining = k - ( (i- startPos) << 1);
             int left = startPos - remaining;
 
             ans = Math.max(ans,preSum[i] - (left < 1 ? 0 : preSum[left-1]));
