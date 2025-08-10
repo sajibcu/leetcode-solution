@@ -1,12 +1,9 @@
 class Solution {
     public boolean reorderedPowerOf2(int n) {
-        int l = String.valueOf(n).length();
 
         int[] digitFrequency = getDigitFrequency(n);
-        for(int i=0;i<32;i++){
-            int powerOf2= (1<<i);
-            if(l != String.valueOf(powerOf2).length() ) continue; // avoid unnecesary check
-            int[] freq = getDigitFrequency(powerOf2);
+        for(int i=0;i<31;i++){
+            int[] freq = getDigitFrequency((1<<i));
             if(equal(digitFrequency,freq)) return true;
         }
 
