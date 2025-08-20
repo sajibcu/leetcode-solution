@@ -23,8 +23,10 @@ class Solution {
         int one = 0;
         int m=matrix.length, n = matrix[0].length;
         for( int a=i;a<i+level;a++) {
+            if( a >= m) break;
             for(int b=j;b<j+level; b++) {
-                if( a < m && b< n ) one+=matrix[a][b];
+                if( b>= n ) break;
+                one+=matrix[a][b];
             }
         }
 
