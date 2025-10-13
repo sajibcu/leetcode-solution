@@ -1,11 +1,11 @@
 class Solution {
     public List<String> removeAnagrams(String[] words) {
         List<String> ans = new ArrayList<>();
+        ans.add(words[0]);
 
-        for( String s: words) {
-            if( ans.size() == 0) ans.add(s);
-            else if ( !isAnagram(ans.get(ans.size()-1), s)) {
-                ans.add(s);
+        for( int i=1;i<words.length;i++) {
+            if ( !isAnagram(words[i], words[i-1])) {
+                ans.add(words[i]);
             }
         }
 
