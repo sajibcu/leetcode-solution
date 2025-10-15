@@ -1,5 +1,9 @@
 class Solution {
-    public int maxIncreasingSubarrays(List<Integer> nums) {
+    static {
+        for(int i=0;i<100;i++)
+            maxIncreasingSubarrays(List.of(2,5,7,8,9,2,3,4,3,1));
+    }
+    public static int maxIncreasingSubarrays(List<Integer> nums) {
         int ans = 0;
         int a = 0,b=1;
 
