@@ -1,21 +1,21 @@
 class Solution {
     public int minCost(String colors, int[] neededTime) {
 
-        int removedTime = 0;
-        int consecutiveColor = 0;
-        List<Integer> time = new ArrayList<>();
-        time.add(neededTime[0]); 
+        int tempMax = neededTime[0];
+        int total = neededTime[0];
+
         for(int i = 1; i < colors.length(); i++ ) {
+            total += neededTime[i];
             if(colors.charAt(i) != colors.charAt(i-1) ) {
-                removedTime +=getRemovedTime(time);
-                time = new ArrayList<>();
+                total -=tempMax;
+                tempMax = neededTime[i];
             }
-            time.add(neededTime[i]);
+            tempMax = Math.max(neededTime[i], tempMax);
         }
 
-        removedTime +=getRemovedTime(time);
+        total -=tempMax;
 
-        return removedTime;
+        return total;
         
     }
 
