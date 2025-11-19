@@ -5,7 +5,7 @@ class Solution {
         for( int n : nums) isExist[n] = true;
 
         while( original < 1001) {
-            if( isExist[original]) original *=2;
+            if( isExist[original]) original <<=1;
             else break;
         }
 
